@@ -15,7 +15,7 @@ For each image in a folder:
 1. Computes a mask to fill in contours of a certain colour (in my case, it looks for the orange borders lines of College sites and fills them in);
 2. Computes a mask corresponding to all pixels of a certain colour (e.g. green for lawns);
 3. Computes the intersection (binary 'and') of the two masks to extract the target areas enclosed by contours;
-4. Counts the pixels in this intersection and converts them to m<sup>2</sup> area based on a scale encoded in the image filename (e.g. "Name\_25m\_150px.png" means that 150 pixels in the image correspond to 25 metres in reality"). 
+4. Counts the pixels in this intersection and converts them to m<sup>2</sup> area based on a scale encoded in the image filename (e.g. "Name\_25m\_150px.png" means that 150 pixels in the image correspond to 25 metres in reality). 
 
 ![Proof of concept image: processing steps for map of Downing College](./results/Downing_25m_150px.png)
 
