@@ -4,7 +4,7 @@ This python script was created to measure the areas of green spaces within Colle
 
 ## Requirements
 ```shell
-pip3 freeze
+$ pip3 freeze
 numpy==1.19.4
 opencv-python==4.4.0.46
 pathlib==1.0.1
