@@ -24,7 +24,7 @@ def imshow_wait(title, image):
     cv2.destroyWindow(title)
 
 # will be storing our results in this string in csv format
-measurements = "College,Green area\n"
+measurements = "College,Pale area,Dark area,Green area\n"
 
 # empirical color bounds to get various contours and regions
 low_orange = (130, 190, 230)
@@ -91,6 +91,8 @@ for img_path in image_paths:
 
     # get only the green spaces on College grounds
     green_college_grounds = cv2.bitwise_and(college_grounds_mask, combined_green_mask)
+    pale_green_college_grounds = cv2.bitwise_and(college_grounds_mask, pale_green_mask)
+    dark_green_college_grounds = cv2.bitwise_and(college_grounds_mask, dark_green_mask)
 
     # get the pixels per metre in our image
     # this information makes up part of the filename
@@ -103,10 +105,16 @@ for img_path in image_paths:
     # count the bright pixels in our final image and convert to metres squared
     nonzero = cv2.countNonZero(green_college_grounds)
     green_area = str(int(round(nonzero/(pxpm * pxpm))))
+    
+    nonzero_pale = cv2.countNonZero(pale_green_college_grounds)
+    pale_area = str(int(round(nonzero_pale/(pxpm * pxpm))))
+    
+    nonzero_dark = cv2.countNonZero(dark_green_college_grounds)
+    dark_area = str(int(round(nonzero_dark/(pxpm * pxpm))))
 
     # add our measurement to the measurements.txt file
     print('\t[i] College: ' + college + "\n\t[i] metres: " + str(metres) + "\n\t[i] pixels: " + str(pixels) + "\n\t[i] green area: " + green_area + " m^2")
-    measurements += college + "," + green_area + "\n"
+    measurements += college + "," + pale_area + "," + dark_area + "," + green_area + "\n"
     
     if args['verbose'] == True or save_dir != None:
         # convert masks to BGR so that we can...
